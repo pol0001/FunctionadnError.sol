@@ -1,22 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.25;
 
-contract DailyExerciseTracking {
+contract DeviceShop {
 
-    function Morning(uint MorningConsumpt) public pure {
-        require(MorningConsumpt > 100, "I'm still hungry, I need more food in my breakfast.");
+    function PCprice(uint PC) public pure {
+        require(PC <= 20000, "This laptop is 20,000 pesos.");
+        require(PC >= 20000, "This laptop is 20,000 pesos, this is your change.");
     }
 
-    function Lunch(uint LunchConsumpt) public pure {
-        if (LunchConsumpt < 50) {
-            revert("I'm still hungry, I need food in my lunch.");
+    function Phoneprice(uint PHONE) public pure {
+        if (PHONE <= 15000) {
+            revert("This phone is 15,000 pesos.");
+        }
+        if (PHONE >= 15000) {
+            revert("This phone is 15,000 pesos only, this is your change.");
         }
     }
 
-    function Dinner(uint256 DinnerConsumpt) public pure {
-        assert(DinnerConsumpt == 20);
+    function iPadprice(uint iPad) public pure {
+        require(iPad == 25000, "The iPad price must be exactly 25,000 pesos.");
     }
-
-    function Exercise(uint ExerciseDuration) public pure {
-        require(ExerciseDuration >= 30, "You need to exercise for at least 30 minutes daily.");
-    }
+}
