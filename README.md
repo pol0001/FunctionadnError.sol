@@ -1,41 +1,40 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.25;
 
-contract Errors {
-    uint public DefaultValue;
-    uint _currentassert;
-    uint _currentrequired;
-    uint _currentrevert;
+contract DailyFoodConsumption {
 
-    function GetAssert(uint _initialassert) public{
-        _currentassert = _initialassert;
+    function Morning(uint MorningConsumpt) public pure {
+        require(MorningConsumpt > 100, "I'm still hungry, I need more food in my breakfast.");
     }
 
-    function GetRequired(uint _initialrequired) public{
-        _currentrequired = _initialrequired;
+    function Lunch(uint LunchConsumpt) public pure {
+        if (LunchConsumpt < 50) {
+            revert("I'm still hungry, I need food in my lunch.");
+        }
     }
 
-    function GetRevert(uint _initialrevert) public{
-        _currentrevert = _initialrevert;
+    function Dinner(uint256 DinnerConsumpt) public pure {
+        assert(DinnerConsumpt == 20);
     }
 }
 
-contract Derived is Errors{
-    constructor(uint ValueForCondition)payable{
-        DefaultValue = ValueForCondition;
+contract DailyHydrationConsumption {
+
+    function Morning(uint MorningConsumpt) public pure {
+        require(MorningConsumpt > 100, "I'm still hungry, I need more food in my breakfast.");
     }
 
-    function ShowAssertError() public view{
-            assert(_currentassert != DefaultValue);
+    function Lunch(uint LunchConsumpt) public pure {
+        if (LunchConsumpt < 50) {
+            revert("I'm still hungry, I need food in my lunch.");
+        }
     }
 
-    function ShowRequiredError() public view{
-            require(_currentrequired != DefaultValue, "This is a Require error!");
+    function Dinner(uint256 DinnerConsumpt) public pure {
+        assert(DinnerConsumpt == 20);
     }
 
-    function ShowRevertError() public view{
-            if(_currentrevert == DefaultValue){
-                revert("This is a Revert error!");
-            }
+    function WaterIntake(uint WaterConsumpt) public pure {
+        require(WaterConsumpt >= 2000, "You need to drink at least 2 liters of water daily.");
     }
 }
